@@ -1,25 +1,36 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Award, Target, Droplets } from 'lucide-react';
+import { ArrowRight, CheckCircle, Award, Target } from 'lucide-react';
 
 const Home = () => {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
-            <section className="relative bg-accent1 text-white py-24 md:py-32 overflow-hidden">
-                {/* Abstract Background Design */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[100%] rounded-full bg-white blur-3xl"></div>
-                    <div className="absolute top-[40%] -left-[10%] w-[40%] h-[80%] rounded-full bg-accent2 blur-3xl"></div>
-                </div>
+            <section className="relative bg-gray-900 text-white py-32 md:py-48 overflow-hidden flex items-center min-h-[80vh]">
+                {/* Video Background */}
+                <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    className="absolute inset-0 w-full h-full object-cover z-0"
+                >
+                    <source src="/hero-video.mp4" type="video/mp4" />
+                    {/* Fallback pattern if video fails to load */}
+                </video>
+                
+                {/* Color and gradient overlays for depth and text legibility */}
+                <div className="absolute inset-0 bg-accent1/60 mix-blend-multiply z-0 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/60 to-transparent z-0 pointer-events-none"></div>
+                <div className="absolute inset-0 opacity-20 background-pattern z-0 pointer-events-none"></div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                     <div className="max-w-3xl">
                         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
                             Service Built On <br />
                             <span className="text-secondary text-white border-b-4 border-accent2 pb-2">Sincere Relationship.</span>
                         </h1>
-                        <p className="text-lg md:text-xl text-blue-100 mb-10 max-w-2xl">
+                        <p className="text-xl md:text-2xl font-light text-gray-200 mb-10 max-w-2xl">
                             Delivering world-class civil and water engineering solutions across Nigeria and West Africa with an unwavering commitment to quality.
                         </p>
                         <div className="flex flex-wrap gap-4">
@@ -31,7 +42,7 @@ const Home = () => {
                             </Link>
                             <Link
                                 to="/contact"
-                                className="bg-accent2 hover:bg-accent2-light text-white px-8 py-4 rounded-md font-bold text-lg transition-all shadow-lg text-center"
+                                className="bg-accent2 hover:bg-red-800 text-white px-8 py-4 rounded-md font-bold text-lg transition-colors duration-300 shadow-lg text-center"
                             >
                                 Contact Us
                             </Link>
@@ -57,11 +68,11 @@ const Home = () => {
                             <ul className="space-y-4">
                                 <li className="flex items-start">
                                     <CheckCircle className="h-6 w-6 text-accent1 mr-3 flex-shrink-0" />
-                                    <span className="text-gray-700 font-medium">International Water Quality (IWQ) Certified</span>
+                                    <span className="text-gray-700 font-medium">Technical support from CHANG-SHIN (South Korea)</span>
                                 </li>
                                 <li className="flex items-start">
                                     <CheckCircle className="h-6 w-6 text-accent1 mr-3 flex-shrink-0" />
-                                    <span className="text-gray-700 font-medium">Nigeria Society of Engineers (NSE) Member</span>
+                                    <span className="text-gray-700 font-medium">Advanced drilling capacity up to 1,500 meters</span>
                                 </li>
                             </ul>
                         </div>
@@ -71,12 +82,12 @@ const Home = () => {
                             <div className="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center transform hover:-translate-y-2 transition-transform duration-300">
                                 <Award className="h-12 w-12 text-accent1 mb-4" />
                                 <h3 className="font-bold text-xl mb-2">Quality Assured</h3>
-                                <p className="text-sm text-gray-500">Meeting international standards globally.</p>
+                                <p className="text-sm text-gray-500 leading-normal min-h-[2.5rem] flex items-center">Meeting international standards globally.</p>
                             </div>
                             <div className="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center transform hover:-translate-y-2 transition-transform duration-300 mt-12">
                                 <Target className="h-12 w-12 text-accent2 mb-4" />
                                 <h3 className="font-bold text-xl mb-2">Precision</h3>
-                                <p className="text-sm text-gray-500">Meeting client specifications exactly.</p>
+                                <p className="text-sm text-gray-500 leading-normal min-h-[2.5rem] flex items-center">Meeting client specifications exactly.</p>
                             </div>
                         </div>
                     </div>
@@ -102,10 +113,22 @@ const Home = () => {
                         </div>
 
                         <div className="p-8 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex justify-center mb-4"><Droplets className="h-12 w-12 text-accent1" /></div>
-                            <div className="text-xl font-semibold text-gray-800 mb-2">Clean Water For All</div>
-                            <p className="text-gray-500">Committed to providing sustainable water solutions.</p>
+                            <div className="flex justify-center mb-4"><div className="text-5xl font-extrabold text-accent1">24/7</div></div>
+                            <div className="text-xl font-semibold text-gray-800 mb-2">24/7 Call Center</div>
+                            <p className="text-gray-500">Committed to providing sustainable water solutions around the clock.</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Global Clients Section */}
+            <section className="py-12 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-100 pt-16">
+                    <p className="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-8">Trusted over the years by leading brands</p>
+                    <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
+                        <img src="/krones-logo.png" alt="Krones West Africa" className="h-10 md:h-12 object-contain hover:scale-105 transition-transform duration-300" />
+                        <img src="/rite-logo.png" alt="Rite Foods" className="h-12 md:h-16 object-contain hover:scale-105 transition-transform duration-300" />
+                        <img src="/honeywell-logo.png" alt="Honeywell Mills Plc" className="h-12 md:h-16 object-contain hover:scale-105 transition-transform duration-300" />
                     </div>
                 </div>
             </section>
@@ -115,7 +138,7 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
                     <div className="mb-8 md:mb-0 md:mr-8">
                         <h2 className="text-3xl font-bold mb-4">Ready to start your next project?</h2>
-                        <p className="text-blue-100 text-lg">Contact our 24-hour call center today for a consultation or emergency services.</p>
+                        <p className="text-gray-200 text-lg">Contact our 24-hour call center today for a consultation or emergency services.</p>
                     </div>
                     <Link
                         to="/contact"

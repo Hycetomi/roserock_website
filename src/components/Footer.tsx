@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Droplet, Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -10,11 +10,11 @@ const Footer = () => {
 
                     {/* Company Info */}
                     <div>
-                        <div className="flex items-center gap-2 mb-4">
-                            <Droplet className="h-6 w-6 text-accent1" strokeWidth={2.5} />
-                            <h2 className="text-xl font-bold tracking-widest text-white">ROSEROCK</h2>
+                        <div className="flex items-center gap-3 mb-5">
+                            <img src="/company-logo.png" alt="ROSEROCK LIMITED" className="h-16 w-16 object-contain rounded bg-white p-1" />
+                            <h2 className="text-2xl font-bold tracking-widest text-white mt-1">ROSEROCK</h2>
                         </div>
-                        <p className="text-gray-400 mb-6 leading-relaxed">
+                        <p className="text-gray-200 mb-6 leading-relaxed">
                             Internationally certified engineering company dedicated to providing sincere services and making clean water available to all.
                         </p>
                         <div className="flex flex-col space-y-3">
@@ -38,16 +38,16 @@ const Footer = () => {
                         <h3 className="text-lg font-semibold mb-6 border-b border-gray-700 pb-2 inline-block">Quick Links</h3>
                         <ul className="space-y-3">
                             <li>
-                                <Link to="/" className="text-gray-400 hover:text-accent1 transition-colors">Home</Link>
+                                <Link to="/" className="text-gray-200 hover:text-accent1 transition-colors">Home</Link>
                             </li>
                             <li>
-                                <Link to="/about" className="text-gray-400 hover:text-accent1 transition-colors">About Us</Link>
+                                <Link to="/about" className="text-gray-200 hover:text-accent1 transition-colors">About Us</Link>
                             </li>
                             <li>
-                                <Link to="/services" className="text-gray-400 hover:text-accent1 transition-colors">Our Services</Link>
+                                <Link to="/services" className="text-gray-200 hover:text-accent1 transition-colors">Our Services</Link>
                             </li>
                             <li>
-                                <Link to="/contact" className="text-gray-400 hover:text-accent1 transition-colors">Contact</Link>
+                                <Link to="/contact" className="text-gray-200 hover:text-accent1 transition-colors">Contact</Link>
                             </li>
                         </ul>
                     </div>
@@ -56,20 +56,20 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-6 border-b border-gray-700 pb-2 inline-block">Core Services</h3>
                         <ul className="space-y-3">
-                            <li className="text-gray-400">Civil Engineering</li>
-                            <li className="text-gray-400">Borehole Drilling</li>
-                            <li className="text-gray-400">Water Treatment Plants</li>
-                            <li className="text-gray-400">Consultancy & Laboratory</li>
-                            <li className="text-gray-400">Tanks Tower Installation</li>
+                            <li className="text-gray-200">Civil Engineering</li>
+                            <li className="text-gray-200">Borehole Drilling</li>
+                            <li className="text-gray-200">Water Treatment Plants</li>
+                            <li className="text-gray-200">Consultancy & Laboratory</li>
+                            <li className="text-gray-200">Tanks Tower Installation</li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p className="text-gray-500 text-sm mb-4 md:mb-0">
+                    <p className="text-gray-300 text-sm mb-4 md:mb-0">
                         &copy; {new Date().getFullYear()} ROSEROCK LIMITED (RC 1354631). All rights reserved.
                     </p>
-                    <div className="text-accent2 text-sm font-semibold">
+                    <div className="text-red-300 text-sm font-semibold">
                         Service built on sincere relationship.
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Droplet } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +23,8 @@ const Navbar = () => {
                 <div className="flex justify-between h-20 items-center">
                     {/* Logo Section */}
                     <div className="flex-shrink-0 flex items-center">
-                        <Link to="/" className="flex items-center gap-2">
-                            <Droplet className="h-8 w-8 text-accent1" strokeWidth={2.5} />
+                        <Link to="/" className="flex items-center gap-3">
+                            <img src="/company-logo.png" alt="ROSEROCK LIMITED" className="h-16 w-16 object-contain rounded shadow-sm" />
                             <div>
                                 <h1 className="text-2xl font-bold text-accent1 tracking-widest">ROSEROCK</h1>
                                 <p className="text-[10px] text-accent2 font-semibold uppercase tracking-[0.2em] -mt-1">Limited</p>

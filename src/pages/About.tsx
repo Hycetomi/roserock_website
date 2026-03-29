@@ -1,6 +1,19 @@
 
 import { ShieldCheck, Target, HeartHandshake, Zap, Globe } from 'lucide-react';
 
+const executedProjects = [
+    { client: "Krones West Africa", type: "Borehole & WTP", location: "Ikeja, Lagos State" },
+    { client: "Mamuda Beverages", type: "Borehole & WTP", location: "Ogun State" },
+    { client: "Rite Foods", type: "Borehole & WTP", location: "Ososa, Ogun State" },
+    { client: "Honeywell Mills Plc.", type: "Borehole & WTP", location: "Apapa, Lagos State" },
+    { client: "Learn Africa Plc.", type: "Borehole & WTP", location: "Ikeja, Lagos State" },
+    { client: "Boulos", type: "Borehole & WTP", location: "Ikeja, Lagos State" },
+    { client: "Nigerite", type: "Borehole & WTP", location: "Ikeja, Lagos State" },
+    { client: "AB10 Hospital", type: "Borehole & WTP", location: "Ogba, Lagos State" },
+    { client: "Ifako Int. Sec. School", type: "Borehole & WTP", location: "Ifako, Lagos State" },
+    { client: "Es-Say Holding (Fototek)", type: "Borehole & WTP", location: "Ososa, Ogun State" }
+];
+
 const About = () => {
     return (
         <div className="flex flex-col min-h-screen bg-white">
@@ -9,7 +22,7 @@ const About = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">About Us</h1>
                     <div className="w-24 h-1 bg-accent1 mx-auto mb-6"></div>
-                    <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-xl text-gray-200 max-w-2xl mx-auto">
                         Discover the story, mission, and leadership behind ROSEROCK LIMITED.
                     </p>
                 </div>
@@ -100,6 +113,39 @@ const About = () => {
                                 </div>
                             </div>
 
+                        </div>
+                    </div>
+
+                    {/* Projects Executed Section */}
+                    <div className="mt-24">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold mb-4 text-gray-900">Projects Executed</h2>
+                            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                                We have successfully executed over 1,000 jobs around the country and West Africa sub regions.
+                            </p>
+                        </div>
+
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left border-collapse whitespace-nowrap">
+                                    <thead>
+                                        <tr className="bg-accent1 text-white border-b border-gray-200">
+                                            <th className="py-4 px-6 font-semibold tracking-wide">Client</th>
+                                            <th className="py-4 px-6 font-semibold tracking-wide">Type of Job</th>
+                                            <th className="py-4 px-6 font-semibold tracking-wide">Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                        {executedProjects.map((project, index) => (
+                                            <tr key={index} className="hover:bg-blue-50 transition-colors">
+                                                <td className="py-4 px-6 text-gray-900 font-medium">{project.client}</td>
+                                                <td className="py-4 px-6 text-gray-600">{project.type}</td>
+                                                <td className="py-4 px-6 text-gray-500">{project.location}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
