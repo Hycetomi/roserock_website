@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, AlertCircle, Send, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
@@ -6,6 +6,19 @@ const Contact = () => {
     const location = useLocation();
     const prefilledSubject = location.state?.prefilledSubject || "";
     
+    // Automatically guide the viewport tracking based on routing intent
+    useEffect(() => {
+        if (location.state?.prefilledSubject) {
+            // Drop them smoothly directly into the form if they requested a quote
+            setTimeout(() => {
+                document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        } else {
+            // Standard reset for generic page clicks
+            window.scrollTo(0, 0);
+        }
+    }, [location]);
+
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -130,7 +143,7 @@ const Contact = () => {
                     </div>
 
                         {/* Contact Form */}
-                        <div className="lg:col-span-2">
+                        <div className="lg:col-span-2" id="contact-form-section">
                             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 md:p-12 h-full">
                                 <h2 className="text-2xl font-bold text-gray-900 mb-8 border-b pb-4">Send Us a Message</h2>
 
