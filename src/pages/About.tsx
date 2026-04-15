@@ -18,8 +18,14 @@ const About = () => {
     return (
         <div className="flex flex-col min-h-screen bg-white">
             {/* Page Header */}
-            <div className="bg-gray-900 text-white py-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="bg-gray-900 text-white py-24 md:py-32 relative overflow-hidden">
+                <div 
+                    className="absolute inset-0 bg-cover bg-center z-0" 
+                    style={{ backgroundImage: "url('/images/water-treatment-plant.jpg')" }}
+                ></div>
+                <div className="absolute inset-0 bg-blue-950/80 mix-blend-multiply z-0 opacity-90 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/90 z-0 pointer-events-none"></div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">About Us</h1>
                     <div className="w-24 h-1 bg-accent1 mx-auto mb-6"></div>
                     <p className="text-xl text-gray-200 max-w-2xl mx-auto">

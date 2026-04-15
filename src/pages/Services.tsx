@@ -59,9 +59,14 @@ const Services = () => {
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
             {/* Page Header */}
-            <div className="bg-gray-900 text-white py-20 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10 background-pattern"></div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center border-accent1">
+            <div className="bg-gray-900 text-white py-24 md:py-32 relative overflow-hidden">
+                <div 
+                    className="absolute inset-0 bg-cover bg-center z-0" 
+                    style={{ backgroundImage: "url('/images/truck-mounted-rotary-rig.jpg')" }}
+                ></div>
+                <div className="absolute inset-0 bg-blue-950/80 mix-blend-multiply z-0 opacity-90 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/90 z-0 pointer-events-none"></div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center border-accent1 relative z-10">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 relative z-10">Our Services</h1>
                     <div className="w-24 h-1 bg-accent1 mx-auto mb-6 relative z-10"></div>
                     <p className="text-xl text-gray-200 max-w-2xl mx-auto relative z-10">
@@ -89,7 +94,7 @@ const Services = () => {
                                     </p>
                                 </div>
                                 <div className="px-8 py-5 border-t border-gray-50 bg-gray-50 group-hover:bg-accent1 group-hover:text-white transition-colors duration-300 mt-auto">
-                                    <Link to="/contact" className="text-sm font-semibold uppercase tracking-wider flex items-center w-full">
+                                    <Link to="/contact" state={{ prefilledSubject: `Quote Request: ${service.title}` }} className="text-sm font-semibold uppercase tracking-wider flex items-center w-full">
                                         Request Quote
                                         <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -105,6 +110,7 @@ const Services = () => {
                             <p className="text-red-100 mb-8 max-w-sm">We provide tailored engineering solutions to meet specific and complex requirements.</p>
                             <Link
                                 to="/contact"
+                                state={{ prefilledSubject: "Quote Request: Custom Solutions" }}
                                 className="bg-white text-accent2 hover:bg-gray-100 px-6 py-3 rounded-md font-bold transition-all shadow-md"
                             >
                                 Contact Our Team

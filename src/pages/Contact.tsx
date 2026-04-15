@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, AlertCircle, Send } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { MapPin, Phone, Mail, Clock, AlertCircle, Send, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 const Contact = () => {
+    const location = useLocation();
+    const prefilledSubject = location.state?.prefilledSubject || "";
+    
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +37,13 @@ const Contact = () => {
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
             {/* Page Header */}
-            <div className="bg-gray-900 text-white py-20 relative">
+            <div className="bg-gray-900 text-white py-24 md:py-32 relative overflow-hidden">
+                <div 
+                    className="absolute inset-0 bg-cover bg-center z-0" 
+                    style={{ backgroundImage: "url('/images/containerized water treatment plant.jpg')" }}
+                ></div>
+                <div className="absolute inset-0 bg-blue-950/80 mix-blend-multiply z-0 opacity-90 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/90 z-0 pointer-events-none"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Contact Us</h1>
                     <div className="w-24 h-1 bg-accent1 mx-auto mb-6"></div>
@@ -85,20 +95,39 @@ const Contact = () => {
                                 </div>
                             </div>
 
-                            {/* Emergency Services Area */}
-                            <div className="bg-accent2 text-white p-8 rounded-xl shadow-md border border-accent2">
-                                <div className="flex items-center mb-4">
-                                    <AlertCircle className="h-8 w-8 mr-3" />
-                                    <h3 className="text-xl font-bold">Emergency Services</h3>
-                                </div>
-                                <p className="text-red-100 mb-4 font-medium italic">Available for registered clients.</p>
-                                <div className="flex items-center text-sm font-semibold bg-white/20 p-3 rounded-lg">
-                                    <Clock className="h-5 w-5 mr-3" />
-                                    24-Hour Call Center Active
-                                </div>
+                        {/* Emergency Services Area */}
+                        <div className="bg-accent2 text-white p-8 rounded-xl shadow-md border border-accent2">
+                            <div className="flex items-center mb-4">
+                                <AlertCircle className="h-8 w-8 mr-3" />
+                                <h3 className="text-xl font-bold">Emergency Services</h3>
                             </div>
-
+                            <p className="text-red-100 mb-4 font-medium italic">Available for registered clients.</p>
+                            <div className="flex items-center text-sm font-semibold bg-white/20 p-3 rounded-lg">
+                                <Clock className="h-5 w-5 mr-3" />
+                                24-Hour Call Center Active
+                            </div>
                         </div>
+
+                        {/* Social Media Links Widget */}
+                        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                            <h3 className="text-lg font-bold text-gray-900 mb-4 whitespace-nowrap">Connect With Us</h3>
+                            <div className="flex justify-between sm:justify-start sm:space-x-4">
+                                <a href="#" className="bg-blue-50 p-3 rounded-full text-accent1 hover:text-white hover:bg-accent1 transition-colors duration-300" aria-label="LinkedIn">
+                                    <Linkedin className="h-6 w-6" />
+                                </a>
+                                <a href="#" className="bg-blue-50 p-3 rounded-full text-accent1 hover:text-white hover:bg-accent1 transition-colors duration-300" aria-label="Twitter">
+                                    <Twitter className="h-6 w-6" />
+                                </a>
+                                <a href="#" className="bg-blue-50 p-3 rounded-full text-accent1 hover:text-white hover:bg-accent1 transition-colors duration-300" aria-label="Instagram">
+                                    <Instagram className="h-6 w-6" />
+                                </a>
+                                <a href="#" className="bg-blue-50 p-3 rounded-full text-accent1 hover:text-white hover:bg-accent1 transition-colors duration-300" aria-label="Facebook">
+                                    <Facebook className="h-6 w-6" />
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
 
                         {/* Contact Form */}
                         <div className="lg:col-span-2">
@@ -135,18 +164,33 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                                            Subject
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="subject"
-                                            name="subject"
-                                            required
-                                            className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-accent1 focus:ring-accent1 focus:ring-2 focus:ring-opacity-50 transition-colors shadow-sm"
-                                            placeholder="Service Inquiry"
-                                        />
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                                                Phone Number
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                name="phone"
+                                                className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-accent1 focus:ring-accent1 focus:ring-2 focus:ring-opacity-50 transition-colors shadow-sm"
+                                                placeholder="+234 (0) 800 000 0000"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                                                Subject
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="subject"
+                                                name="subject"
+                                                required
+                                                defaultValue={prefilledSubject}
+                                                className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-accent1 focus:ring-accent1 focus:ring-2 focus:ring-opacity-50 transition-colors shadow-sm"
+                                                placeholder="Service Inquiry"
+                                            />
+                                        </div>
                                     </div>
 
                                     <div>

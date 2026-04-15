@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -30,6 +30,22 @@ const Footer = () => {
                                 <Mail className="h-5 w-5 text-accent1 mr-3 flex-shrink-0" />
                                 <span className="text-gray-300">roserockltd@gmail.com</span>
                             </div>
+                        </div>
+
+                        {/* Social Media Icons */}
+                        <div className="flex space-x-4 mt-8">
+                            <a href="#" className="bg-gray-800 p-2.5 rounded-full text-white hover:text-red-800 hover:bg-white transition-colors duration-300" aria-label="LinkedIn">
+                                <Linkedin className="h-5 w-5" />
+                            </a>
+                            <a href="#" className="bg-gray-800 p-2.5 rounded-full text-white hover:text-red-800 hover:bg-white transition-colors duration-300" aria-label="Twitter">
+                                <Twitter className="h-5 w-5" />
+                            </a>
+                            <a href="#" className="bg-gray-800 p-2.5 rounded-full text-white hover:text-red-800 hover:bg-white transition-colors duration-300" aria-label="Instagram">
+                                <Instagram className="h-5 w-5" />
+                            </a>
+                            <a href="#" className="bg-gray-800 p-2.5 rounded-full text-white hover:text-red-800 hover:bg-white transition-colors duration-300" aria-label="Facebook">
+                                <Facebook className="h-5 w-5" />
+                            </a>
                         </div>
                     </div>
 
