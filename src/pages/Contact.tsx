@@ -1,7 +1,35 @@
-
+import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, AlertCircle, Send } from 'lucide-react';
 
 const Contact = () => {
+    const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setStatus('sending');
+        
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                form.reset();
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error("Form submission error", error);
+            setStatus('error');
+        }
+    };
+
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
             {/* Page Header */}
@@ -77,7 +105,7 @@ const Contact = () => {
                             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 md:p-12 h-full">
                                 <h2 className="text-2xl font-bold text-gray-900 mb-8 border-b pb-4">Send Us a Message</h2>
 
-                                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                                <form className="space-y-6" onSubmit={handleSubmit}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -86,6 +114,8 @@ const Contact = () => {
                                             <input
                                                 type="text"
                                                 id="name"
+                                                name="name"
+                                                required
                                                 className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-accent1 focus:ring-accent1 focus:ring-2 focus:ring-opacity-50 transition-colors shadow-sm"
                                                 placeholder="John Doe"
                                             />
@@ -97,6 +127,8 @@ const Contact = () => {
                                             <input
                                                 type="email"
                                                 id="email"
+                                                name="email"
+                                                required
                                                 className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-accent1 focus:ring-accent1 focus:ring-2 focus:ring-opacity-50 transition-colors shadow-sm"
                                                 placeholder="john@example.com"
                                             />
@@ -110,6 +142,8 @@ const Contact = () => {
                                         <input
                                             type="text"
                                             id="subject"
+                                            name="subject"
+                                            required
                                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-accent1 focus:ring-accent1 focus:ring-2 focus:ring-opacity-50 transition-colors shadow-sm"
                                             placeholder="Service Inquiry"
                                         />
@@ -121,6 +155,8 @@ const Contact = () => {
                                         </label>
                                         <textarea
                                             id="message"
+                                            name="message"
+                                            required
                                             rows={6}
                                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-accent1 focus:ring-accent1 focus:ring-2 focus:ring-opacity-50 transition-colors shadow-sm resize-none"
                                             placeholder="How can we help you?"
@@ -129,11 +165,23 @@ const Contact = () => {
 
                                     <button
                                         type="submit"
-                                        className="w-full sm:w-auto flex justify-center items-center px-8 py-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-white bg-accent1 hover:bg-accent1-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent1 transition-colors"
+                                        disabled={status === 'sending'}
+                                        className="w-full sm:w-auto flex justify-center items-center px-8 py-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-white bg-accent1 hover:bg-accent1-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent1 transition-colors disabled:opacity-75 disabled:cursor-not-allowed"
                                     >
-                                        Send Message
-                                        <Send className="ml-2 h-5 w-5" />
+                                        {status === 'sending' ? 'Sending...' : 'Send Message'}
+                                        {status !== 'sending' && <Send className="ml-2 h-5 w-5" />}
                                     </button>
+
+                                    {status === 'success' && (
+                                        <div className="p-4 bg-green-50 text-green-800 rounded-md border border-green-200 mt-4">
+                                            Your message has been sent successfully. We will get back to you shortly.
+                                        </div>
+                                    )}
+                                    {status === 'error' && (
+                                        <div className="p-4 bg-red-50 text-red-800 rounded-md border border-red-200 mt-4">
+                                            An error occurred while sending your message. Please try again later.
+                                        </div>
+                                    )}
                                 </form>
                             </div>
                         </div>

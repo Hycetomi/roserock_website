@@ -1,8 +1,36 @@
-
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Award, Target } from 'lucide-react';
+import { ArrowRight, CheckCircle, Award, Target, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const equipmentData = [
+    { image: "/images/cs-100-crawler-drilling-rig.jpg", label: "CHANG-SHIN CS-100 Crawler-Mounted Drilling Rig" },
+    { image: "/images/truck-mounted-rotary-rig.jpg", label: "Heavy-Duty Truck-Mounted Rotary Drilling Rig (Up to 1,500m Depth)" },
+    { image: "/images/borehole drilling.jpg", label: "Advanced High-Scale Borehole Drilling & Engineering" },
+    { image: "/images/borehole-camera.jpg", label: "Deep Borehole CCTV Camera Inspection Systems" },
+    { image: "/images/heavy-duty-air-compressor.jpg", label: "Atlas Copco Heavy-Duty Industrial Air Compressors (10-20 Bar)" },
+    { image: "/images/air-compressor.jpg", label: "Professional Industrial Air Compressor Units" },
+    { image: "/images/water-treatment-plant.jpg", label: "Industrial Water & Sewage Treatment Plant Installation" },
+    { image: "/images/containerized water treatment plant.jpg", label: "Containerized RO Water Treatment Plant Solutions" },
+    { image: "/images/water softner system.jpg", label: "Industrial Water Softener & Filtration Systems" },
+    { image: "/images/steel-water-tank-tower.jpg", label: "Elevated Sectional Steel Water Tank & Tower Fabrication" },
+    { image: "/images/steel-tank_tower.jpg", label: "Elevated Steel Water Reservoir & Tank Construction" },
+    { image: "/images/tank tower.jpg", label: "Massive Scale Water Tower and Tank Erection" },
+    { image: "/images/tank tower engineering.jpg", label: "Structural Engineering for Heavy-Duty Tank Towers" }
+];
 
 const Home = () => {
+    const carouselRef = useRef<HTMLDivElement>(null);
+
+    const scrollCarousel = (direction: 'left' | 'right') => {
+        if (carouselRef.current) {
+            const scrollAmount = window.innerWidth > 768 ? 600 : 320;
+            carouselRef.current.scrollBy({ 
+                left: direction === 'left' ? -scrollAmount : scrollAmount, 
+                behavior: 'smooth' 
+            });
+        }
+    };
+
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
@@ -90,6 +118,73 @@ const Home = () => {
                                 <p className="text-sm text-gray-500 leading-normal min-h-[2.5rem] flex items-center">Meeting client specifications exactly.</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Equipment & Capacity Section */}
+            <section className="py-24 bg-gray-900 text-white overflow-hidden border-y border-gray-800">
+                <style>{`
+                    .hide-scrollbar::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .hide-scrollbar {
+                        -ms-overflow-style: none; /* IE and Edge */
+                        scrollbar-width: none; /* Firefox */
+                    }
+                `}</style>
+                
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-0">
+                    <div>
+                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 uppercase tracking-tight text-white border-l-4 border-accent1 pl-4">Our Capacity in Action</h2>
+                        <p className="text-gray-400 text-lg max-w-2xl">
+                            Equipped with industry-leading machinery to execute high-scale civil and water engineering projects.
+                        </p>
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    <div className="flex space-x-3 shrink-0">
+                        <button 
+                            onClick={() => scrollCarousel('left')}
+                            className="p-3 rounded-full bg-gray-800 border border-gray-700 hover:bg-accent1 hover:border-accent1 transition-colors group focus:outline-none focus:ring-2 focus:ring-accent1 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-md"
+                            aria-label="Scroll left"
+                        >
+                            <ChevronLeft className="h-6 w-6 text-gray-300 group-hover:text-white" />
+                        </button>
+                        <button 
+                            onClick={() => scrollCarousel('right')}
+                            className="p-3 rounded-full bg-gray-800 border border-gray-700 hover:bg-accent1 hover:border-accent1 transition-colors group focus:outline-none focus:ring-2 focus:ring-accent1 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-md"
+                            aria-label="Scroll right"
+                        >
+                            <ChevronRight className="h-6 w-6 text-gray-300 group-hover:text-white" />
+                        </button>
+                    </div>
+                </div>
+                
+                <div className="w-full pl-4 sm:pl-6 lg:pl-8">
+                    <div ref={carouselRef} className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 pr-8 hide-scrollbar">
+                        {equipmentData.map((item, index) => (
+                            <div key={index} className="flex-none w-[85vw] sm:w-[50vw] lg:w-[35vw] snap-center sm:snap-start relative group rounded-xl overflow-hidden shadow-2xl border border-gray-700 hover:border-accent1 transition-colors duration-300 bg-gray-800">
+                                <div className="aspect-[4/3] md:aspect-video w-full overflow-hidden bg-gray-800">
+                                    {/* Fallback gray box incase images aren't uploaded yet */}
+                                    <div className="absolute inset-0 bg-gray-800 flex items-center justify-center opacity-50 z-0">
+                                        <Target className="h-12 w-12 text-gray-700" />
+                                    </div>
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.label}
+                                        className="w-full h-full object-cover relative z-10 transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                                    />
+                                </div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent opacity-90 z-20 pointer-events-none"></div>
+                                <div className="absolute bottom-0 left-0 p-6 w-full z-30 pointer-events-none">
+                                    <span className="inline-block w-10 h-1.5 bg-accent1 mb-3 shadow-md rounded-full transform origin-left group-hover:scale-x-150 transition-transform"></span>
+                                    <h3 className="text-lg md:text-xl font-bold text-gray-200 uppercase tracking-wider leading-tight pr-4">
+                                        {item.label}
+                                    </h3>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

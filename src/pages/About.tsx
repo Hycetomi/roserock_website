@@ -1,5 +1,5 @@
 
-import { ShieldCheck, Target, HeartHandshake, Zap, Globe } from 'lucide-react';
+import { ShieldCheck, Target, HeartHandshake, Zap } from 'lucide-react';
 
 const executedProjects = [
     { client: "Krones West Africa", type: "Borehole & WTP", location: "Ikeja, Lagos State" },
@@ -52,15 +52,15 @@ const About = () => {
                             </div>
                         </div>
 
-                        <div className="relative">
+                        <div className="relative max-w-sm mx-auto">
                             <div className="absolute inset-0 bg-accent1 transform translate-x-4 translate-y-4 rounded-xl opacity-20"></div>
-                            <div className="bg-gray-100 aspect-[4/3] rounded-xl relative z-10 flex items-center justify-center border-4 border-white shadow-xl overflow-hidden">
-                                {/* Fallback pattern instead of image */}
-                                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#0052cc 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
-                                <div className="text-center z-10 p-8">
-                                    <Globe className="h-20 w-20 text-accent1 mx-auto mb-4 opacity-50" />
-                                    <h3 className="text-2xl font-bold text-gray-400 uppercase tracking-widest">Engineering Excellence</h3>
-                                </div>
+                            <div className="bg-gray-100 aspect-[4/5] rounded-xl relative z-10 flex items-center justify-center border-4 border-white shadow-xl overflow-hidden group">
+                                <img
+                                    src="/ceo.jpeg"
+                                    alt="Engr. Ayodeji Olubode, CEO of ROSEROCK LIMITED"
+                                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-xl pointer-events-none"></div>
                             </div>
                         </div>
                     </div>
